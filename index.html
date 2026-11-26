@@ -135,7 +135,7 @@ section{padding-block:96px}
 /* Phim cưới */
 .film{padding-block:96px 24px}
 .player{position:relative;background:#000;border-radius:4px;overflow:hidden}
-.player video{display:block;width:100%;aspect-ratio:2.39/1;background:#000}
+.player video{display:block;width:100%;aspect-ratio:16/9;background:#000}
 .playlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:14px;margin-top:26px}
 .pl-item{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:8px;min-width:0}
 .pl-item .pl-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:4px;background:var(--bg-2);outline:1px solid var(--line)}
@@ -148,7 +148,7 @@ section{padding-block:96px}
 .pl-item b{font-weight:600;font-size:15px}
 .pl-item span.mono{font-size:11px}
 .pl-item:focus-visible .pl-thumb{outline:2px solid var(--rec);outline-offset:3px}
-.player video{object-fit:cover}
+.player video{object-fit:contain}
 .film-meta{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-top:14px}
 .film-meta p{margin:0;color:var(--muted);max-width:60ch}
 
@@ -268,7 +268,7 @@ footer{position:relative;margin-top:80px;padding-top:20px;border-top:1px solid v
   <div class="wrap">
     <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Mory's Media</a>
     <nav class="nav" aria-label="Mục lục">
-      <a href="#phim-cuoi">Phim cưới</a><a href="#dich-vu">Dịch vụ</a><a href="#tac-pham">Tác phẩm</a><a href="#hau-truong">Hậu trường</a><a href="#thiet-bi">Thiết bị</a>
+      <a href="#phim-cuoi">Phim</a><a href="#dich-vu">Dịch vụ</a><a href="#tac-pham">Tác phẩm</a><a href="#hau-truong">Hậu trường</a><a href="#thiet-bi">Thiết bị</a>
     </nav>
     <a class="cta-sm" href="#lien-he">Đặt lịch</a>
   </div>
@@ -325,8 +325,8 @@ footer{position:relative;margin-top:80px;padding-top:20px;border-top:1px solid v
   <section class="film" id="phim-cuoi">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="display">Phim cưới</h2>
-        <p>Mỗi phim là 60 giây trích từ phóng sự cưới trọn ngày. Chọn một đám cưới bên dưới để xem, nhớ bật tiếng.</p>
+        <h2 class="display">Phim</h2>
+        <p>Mỗi phim là khoảng 1 phút trích từ phim cưới, sự kiện và chân dung. Chọn một phim bên dưới để xem, nhớ bật tiếng.</p>
       </div>
       <div class="player">
         <video id="ps-video" controls playsinline preload="none"></video>
@@ -569,15 +569,18 @@ footer{position:relative;margin-top:80px;padding-top:20px;border-top:1px solid v
   // DANH SÁCH PHIM CƯỚI — thêm video mới: thêm 1 dòng ở đầu danh sách (mới nhất lên đầu).
   // file: tên tệp trong img/ (tạo bằng tools/cat_highlight.sh), ảnh bìa cùng tên .jpg
   const VIDEOS = [
-    { file: 'ps-thanh-van', couple: 'Thanh Vân & Minh Đạt', date: '08.08.2026', note: 'Chú rể đón cô dâu, gia đình hai bên gặp nhau: những cái nắm tay đầu tiên của ngày cưới.' },
-    { file: 'ps-thuy-hien', couple: 'Thuý Hiền & Thanh Tuấn', date: '05.07.2026', note: 'Tiệc cưới náo nhiệt: nâng ly, linh vật nhảy múa, bạn bè reo hò.' },
-    { file: 'ps-thao-hieu', couple: 'Thảo Hiếu & Quốc Dũng', date: '12.07.2026', note: 'Từ lễ gia tiên, cô dâu bước vào lễ đường đến khoảnh khắc trao nhẫn.' },
+    { file: 'ps-mai-thi', kind: 'Phim cưới', couple: 'Mai Thi & Huy Khoa', date: '17.10.2026', note: 'Cô dâu vào lễ, trao nhẫn, rót trà: những phút thiêng liêng nhất của lễ vu quy.' },
+    { file: 'ps-thanh-van', kind: 'Phim cưới', couple: 'Thanh Vân & Minh Đạt', date: '08.08.2026', note: 'Chú rể đón cô dâu, gia đình hai bên gặp nhau: những cái nắm tay đầu tiên của ngày cưới.' },
+    { file: 'ps-thuy-hien', kind: 'Phim cưới', couple: 'Thuý Hiền & Thanh Tuấn', date: '05.07.2026', note: 'Tiệc cưới náo nhiệt: nâng ly, linh vật nhảy múa, bạn bè reo hò.' },
+    { file: 'ps-thao-hieu', kind: 'Phim cưới', couple: 'Thảo Hiếu & Quốc Dũng', date: '12.07.2026', note: 'Từ lễ gia tiên, cô dâu bước vào lễ đường đến khoảnh khắc trao nhẫn.' },
+    { file: 'ev-danon', kind: 'Sự kiện', couple: 'Dan On Foods · 27 năm', date: 'Gala kỷ niệm', note: 'Đêm gala kỷ niệm 27 năm: biểu diễn trên sân khấu, khách mời nhảy múa và cụng ly.' },
+    { file: 'cd-mod-vy', kind: 'Chân dung', couple: 'Mod Vy · Áo dài', date: '03.11.2026', note: 'Phim chân dung áo dài trong nắng chiều, quán cà phê ngói đỏ và gốm mộc.' },
   ];
   const vid = document.getElementById('ps-video'), plist = document.getElementById('ps-list');
   const pick = (i, play) => {
     const v = VIDEOS[i];
     vid.poster = `img/${v.file}.jpg`; vid.src = `img/${v.file}.mp4`;
-    document.getElementById('ps-meta').textContent = `● ${v.couple} · ${v.date} · Sony A7 V`;
+    document.getElementById('ps-meta').textContent = `● ${v.kind} · ${v.couple} · ${v.date}`;
     document.getElementById('ps-desc').textContent = v.note;
     plist.querySelectorAll('.pl-item').forEach((b, k) => b.setAttribute('aria-current', String(k === i)));
     if (play) vid.play().catch(() => {});
@@ -586,7 +589,7 @@ footer{position:relative;margin-top:80px;padding-top:20px;border-top:1px solid v
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'pl-item'; b.setAttribute('role', 'listitem');
     b.innerHTML = `<span class="pl-thumb"><img src="img/${v.file}.jpg" alt="" loading="lazy"><span class="pl-play">▶ 01:00</span></span><b></b><span class="mono"></span>`;
-    b.querySelector('b').textContent = v.couple; b.querySelector('span.mono').textContent = v.date;
+    b.querySelector('b').textContent = v.couple; b.querySelector('span.mono').textContent = `${v.kind} · ${v.date}`;
     b.addEventListener('click', () => { pick(i, true); vid.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
     plist.appendChild(b);
   });
