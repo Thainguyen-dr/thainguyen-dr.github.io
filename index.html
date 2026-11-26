@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đỗ Quốc Thái Nguyên · Mory's Media</title>
+<meta name="description" content="Đỗ Quốc Thái Nguyên – Photographer, Videographer, Editor. Founder Mory's Media. Phóng sự cưới, ảnh quảng cáo, chân dung, sự kiện tại TP. Hồ Chí Minh.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Đỗ Quốc Thái Nguyên · Mory's Media">
+<meta property="og:description" content="Đỗ Quốc Thái Nguyên – Photographer, Videographer, Editor. Founder Mory's Media. Phóng sự cưới, ảnh quảng cáo, chân dung, sự kiện tại TP. Hồ Chí Minh.">
+<meta property="og:image" content="https://thainguyen-dr.github.io/thumb.jpg">
+<meta property="og:url" content="https://thainguyen-dr.github.io/">
+<link rel="icon" href="img/avatar.jpg">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px system-ui,-apple-system,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&subset=vietnamese&display=swap">
+<style>
+/* Layout: phòng chiếu phim. Nền tối điện ảnh (chủ ý chỉ một giao diện tối),
+   tiêu đề hẹp cỡ lớn, khung ngắm máy quay, dải phim, chấm REC đỏ là điểm nhấn. */
+:root{
+  color-scheme:dark;
+  --bg:#0D0D10; --bg-2:#16161B; --ink:#F2EFE9; --muted:#9C9AA3; --line:#2A2A31;
+  --rec:#FF4A3D; --glow:rgba(255,74,61,.35);
+  --f-display:"Barlow Condensed","Be Vietnam Pro","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --wrap:1280px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+/* Tiêu đề: dòng cao 1.15 để dấu tiếng Việt (Ỗ, Ố, Ế…) không chạm dòng trên */
+.display{font-family:var(--f-display);font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:0;text-wrap:balance}
+:focus-visible{outline:2px solid var(--rec);outline-offset:3px}
+
+/* Hạt phim phủ toàn trang */
+.grain{pointer-events:none;position:fixed;inset:-50%;z-index:60;opacity:.07;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}}
+
+/* Thanh trên */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(13,13,16,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:31;background:var(--bg)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--rec);box-shadow:0 0 12px var(--glow);animation:blink 1.4s steps(2,start) infinite;flex:none}
+@keyframes blink{50%{opacity:.2}}
+.nav{display:flex;gap:26px}
+.nav a{font-size:14px;text-decoration:none;color:var(--muted);transition:color .2s}
+.nav a:hover{color:var(--ink)}
+.cta-sm{font:500 13px var(--f-body);padding:8px 16px;border-radius:999px;background:var(--ink);color:var(--bg);text-decoration:none;white-space:nowrap}
+
+/* HERO */
+.hero{position:relative;padding-block:40px 56px;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto -10% -40% 40%;height:80%;background:radial-gradient(closest-side,rgba(255,74,61,.18),transparent);pointer-events:none}
+.osd{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.osd .rec{color:var(--ink);display:flex;align-items:center;gap:8px}
+#tc{font-variant-numeric:tabular-nums;color:var(--ink)}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:48px;align-items:center;margin-top:28px}
+.name{font-size:clamp(58px,11.2vw,168px);text-transform:uppercase}
+.name .fill{display:block;background:linear-gradient(rgba(255,236,214,.28),rgba(255,236,214,.28)),url("img/my-pham-5.jpg") center/cover;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:pan 18s ease-in-out infinite alternate}
+.name .line{display:block}
+@keyframes pan{from{background-position:0% 40%}to{background-position:100% 60%}}
+.tag{margin-top:22px;font-size:clamp(17px,1.6vw,20px);max-width:44ch;color:#CFCCD4}
+.tag b{color:var(--ink);font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 15px var(--f-body);padding:14px 22px;border-radius:999px;text-decoration:none;border:1px solid var(--line);transition:transform .2s, background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--rec);border-color:var(--rec);color:#fff;box-shadow:0 10px 30px var(--glow)}
+
+/* Khung ngắm */
+.vf{position:relative;aspect-ratio:4/5;max-width:100%}
+.vf img{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(1.05)}
+.vf::before,.vf::after{content:"";position:absolute;inset:14px;pointer-events:none;
+  background:
+   linear-gradient(var(--ink),var(--ink)) top left/26px 2px no-repeat,
+   linear-gradient(var(--ink),var(--ink)) top left/2px 26px no-repeat,
+   linear-gradient(var(--ink),var(--ink)) top right/26px 2px no-repeat,
+   linear-gradient(var(--ink),var(--ink)) top right/2px 26px no-repeat,
+   linear-gradient(var(--ink),var(--ink)) bottom left/26px 2px no-repeat,
+   linear-gradient(var(--ink),var(--ink)) bottom left/2px 26px no-repeat,
+   linear-gradient(var(--ink),var(--ink)) bottom right/26px 2px no-repeat,
+   linear-gradient(var(--ink),var(--ink)) bottom right/2px 26px no-repeat}
+.vf::after{inset:50% auto auto 50%;width:22px;height:22px;transform:translate(-50%,-50%);
+  background:linear-gradient(rgba(242,239,233,.7),rgba(242,239,233,.7)) center/22px 1px no-repeat,linear-gradient(rgba(242,239,233,.7),rgba(242,239,233,.7)) center/1px 22px no-repeat}
+.vf-osd{position:absolute;left:24px;right:24px;bottom:22px;display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.vf-osd.t{top:22px;bottom:auto}
+
+/* Marquee */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding-block:18px;white-space:nowrap}
+.track{display:inline-flex;gap:40px;animation:run 38s linear infinite;padding-left:40px}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font-family:var(--f-display);font-weight:700;font-size:clamp(34px,5vw,64px);line-height:1.2;text-transform:uppercase;color:#4A4951}
+.track span:nth-child(4n+1){color:var(--ink);-webkit-text-stroke:0}
+.track i{font-style:normal;color:var(--rec);font-size:clamp(20px,3vw,36px);align-self:center}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* Số liệu */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.stat{padding:34px 20px 34px 0;border-right:1px solid var(--line)}
+.stat + .stat{padding-left:20px}
+.stat:last-child{border-right:0}
+.stat strong{display:block;font-family:var(--f-display);font-weight:700;font-size:clamp(44px,5vw,68px);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat strong em{font-style:normal;color:var(--rec)}
+.stat span{font-size:14px;color:var(--muted)}
+
+/* Section */
+section{padding-block:96px}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:24px 40px;align-items:end;margin-bottom:40px}
+.sec-head h2{font-size:clamp(46px,7vw,104px);text-transform:uppercase}
+.sec-head p{color:var(--muted);margin:0}
+
+/* Showreel band */
+.band{position:relative;overflow:hidden}
+.band img{width:100%;aspect-ratio:2.35/1;object-fit:cover;transform:scale(1.04)}
+.band::before,.band::after{content:"";position:absolute;left:0;right:0;height:9%;background:#000;z-index:1}
+.band::before{top:0}.band::after{bottom:0}
+.band .vf-osd{z-index:2;bottom:12%;left:max(24px,env(safe-area-inset-left,0px));right:max(24px,env(safe-area-inset-right,0px))}
+.band .vf-osd.t{top:12%;bottom:auto}
+
+/* Phim cưới */
+.film{padding-block:96px 24px}
+.player{position:relative;background:#000;border-radius:4px;overflow:hidden}
+.player video{display:block;width:100%;aspect-ratio:2.39/1;background:#000}
+.playlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:14px;margin-top:26px}
+.pl-item{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:8px;min-width:0}
+.pl-item .pl-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:4px;background:var(--bg-2);outline:1px solid var(--line)}
+.pl-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.75);transition:filter .3s,transform .6s}
+.pl-item:hover img{filter:none;transform:scale(1.04)}
+.pl-item .pl-play{position:absolute;left:12px;bottom:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.pl-item[aria-current="true"] .pl-thumb{outline:2px solid var(--rec)}
+.pl-item[aria-current="true"] img{filter:none}
+.pl-item[aria-current="true"] .pl-play{color:var(--rec)}
+.pl-item b{font-weight:600;font-size:15px}
+.pl-item span.mono{font-size:11px}
+.pl-item:focus-visible .pl-thumb{outline:2px solid var(--rec);outline-offset:3px}
+.player video{object-fit:cover}
+.film-meta{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-top:14px}
+.film-meta p{margin:0;color:var(--muted);max-width:60ch}
+
+/* Dịch vụ */
+.svc-list{border-top:1px solid var(--line)}
+.svc{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1.1fr) 180px;gap:24px;align-items:center;padding-block:22px;border-bottom:1px solid var(--line);transition:background .3s}
+.svc:hover{background:var(--bg-2)}
+.svc h3{font-family:var(--f-display);font-weight:700;font-size:clamp(24px,2.6vw,34px);line-height:1.2;margin:0}
+.svc p{margin:0;color:var(--muted);font-size:15px}
+.svc .thumb{aspect-ratio:16/10;overflow:hidden;border-radius:4px}
+.svc .thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.75);transition:filter .4s, transform .6s}
+.svc:hover .thumb img{filter:none;transform:scale(1.06)}
+
+/* Tác phẩm */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 62px);z-index:25;padding-block:10px;background:rgba(13,13,16,.88);backdrop-filter:blur(12px)}
+.project,#tac-pham{scroll-margin-top:140px}
+.filters button{font:500 14px var(--f-body);padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s}
+.filters button:hover{border-color:#55545C}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.project{padding-block:40px;border-top:1px solid var(--line)}
+.project[hidden]{display:none!important}
+.p-head{display:flex;justify-content:space-between;align-items:end;gap:16px 32px;flex-wrap:wrap;margin-bottom:20px}
+.p-head h3{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,4.4vw,60px);line-height:1.15;text-transform:uppercase;margin:6px 0 0}
+.p-head p{max-width:48ch;color:var(--muted);margin:8px 0 0;font-size:15px}
+.p-head a{font-size:14px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;white-space:nowrap}
+.p-head a:hover{color:var(--ink);border-color:var(--rec)}
+.shots{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
+.shot{position:relative;padding:0;border:0;background:var(--bg-2);cursor:zoom-in;overflow:hidden;border-radius:4px}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.shot::after{content:"⤢";position:absolute;right:12px;bottom:10px;font-size:16px;color:#fff;opacity:0;transform:translateY(6px);transition:.3s;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.shot:hover img{transform:scale(1.05)}
+.shot:hover::after{opacity:1;transform:none}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}
+.pt{aspect-ratio:2/3}.sq{aspect-ratio:1}.po{aspect-ratio:3/4}.ls{aspect-ratio:3/2}.tall{grid-row:span 2}
+
+/* Dải phim BTS */
+.strip{position:relative;background:#050506;padding-block:34px;overflow-x:auto;scrollbar-width:thin}
+.strip::before,.strip::after{content:"";position:absolute;left:0;right:0;height:14px;
+  background:repeating-linear-gradient(90deg,transparent 0 14px,#2b2b31 14px 30px);min-width:1800px}
+.strip::before{top:10px}.strip::after{bottom:10px}
+.strip-in{display:flex;gap:14px;width:max-content;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+.strip .shot{width:min(420px,78vw);aspect-ratio:3/2;flex:none;border-radius:2px}
+.strip .shot span{position:absolute;left:10px;top:8px;font-family:var(--f-mono);font-size:10px;color:#ffb36b;letter-spacing:.1em}
+
+/* Thiết bị */
+.kit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+.kit h3{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 10px}
+.kit dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);border-top:1px solid var(--line)}
+.kit dt,.kit dd{padding:14px 0;border-bottom:1px solid var(--line);margin:0}
+.kit dt{padding-right:28px;color:var(--muted);font-size:14px}
+.kit dd{font-weight:500}
+
+/* Liên hệ */
+.contact{position:relative;overflow:hidden;padding-block:120px 40px}
+.contact::before{content:"";position:absolute;inset:-30% -10% auto;height:120%;background:radial-gradient(closest-side,rgba(255,74,61,.22),transparent 70%);pointer-events:none}
+.contact h2{position:relative;font-size:clamp(56px,12vw,190px);text-transform:uppercase}
+.contact h2 .o{color:var(--rec)}
+.c-grid{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px}
+.c-item{border-top:1px solid var(--line);padding-top:14px;min-width:0}
+.c-item a,.c-item .val{display:block;margin-top:6px;font-size:19px;font-weight:500;text-decoration:none;word-break:break-word}
+.c-item a:hover{color:var(--rec)}
+.copy{margin-top:12px;font:500 13px var(--f-body);padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.copy:hover{border-color:var(--rec)}
+footer{position:relative;margin-top:80px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:70;background:rgba(5,5,7,.96);display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:12px;padding:calc(14px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb-bar{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.lb img{max-width:100%;max-height:100%;margin:auto;object-fit:contain;align-self:center}
+.lb button{background:transparent;border:1px solid #3a3a42;color:var(--ink);border-radius:999px;padding:9px 16px;font:500 14px var(--f-body);cursor:pointer}
+.lb-nav{display:flex;justify-content:center;gap:12px}
+
+/* Mở trang: tên trượt lên một lần */
+.name .line,.name .fill{animation-name:rise,pan;animation-duration:1s,18s;animation-timing-function:cubic-bezier(.2,.7,.2,1),ease-in-out;animation-iteration-count:1,infinite;animation-direction:normal,alternate;animation-fill-mode:backwards,none}
+.name .line{animation-name:rise;animation-duration:1s}
+.name .fill{animation-delay:.12s,0s}
+@keyframes rise{from{transform:translateY(40%);opacity:0}}
+
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .name{font-size:clamp(52px,15vw,140px)}
+  .vf{max-width:440px}
+  .nav{display:none}
+  .sec-head{grid-template-columns:1fr}
+  .svc{grid-template-columns:minmax(0,1fr) 140px;gap:6px 18px}
+  .svc .mono{grid-column:1/-1}
+  .svc p{grid-column:1}
+  .svc .thumb{grid-column:2;grid-row:2/4}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(3){padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .kit{grid-template-columns:1fr}
+  .c-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .band img{aspect-ratio:16/9}
+}
+@media (max-width:600px){
+  .shots{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .c3,.c4,.c5,.c6{grid-column:span 1}
+  .c7,.c8{grid-column:span 2}
+  .tall{grid-row:auto}
+  .c-grid{grid-template-columns:1fr}
+  .svc{grid-template-columns:1fr}
+  .svc .thumb{grid-column:1;grid-row:auto}
+  section{padding-block:72px}
+}
+@media (prefers-reduced-motion:reduce){
+  .grain,.dot,.track,.name .fill{animation:none}
+  .name .line,.name .fill{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Mory's Media</a>
+    <nav class="nav" aria-label="Mục lục">
+      <a href="#phim-cuoi">Phim cưới</a><a href="#dich-vu">Dịch vụ</a><a href="#tac-pham">Tác phẩm</a><a href="#hau-truong">Hậu trường</a><a href="#thiet-bi">Thiết bị</a>
+    </nav>
+    <a class="cta-sm" href="#lien-he">Đặt lịch</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="osd" aria-hidden="true">
+        <span class="rec"><span class="dot"></span>REC</span>
+        <span>TC <span id="tc">00:00:00:00</span></span>
+        <span>4K · 50P</span><span>ISO 800</span><span>1/100</span><span>ƒ1.8</span><span>35MM</span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <h1 class="display name"><span class="line">Đỗ Quốc</span><span class="fill">Thái Nguyên</span></h1>
+          <p class="tag"><b>Photographer · Videographer · Editor.</b> Founder Mory's Media. Mình chụp và quay để giữ lại khoảnh khắc: từ nụ cười trong ngày cưới đến chiếc bánh mì vừa ra lò.</p>
+          <div class="hero-cta">
+            <a class="btn primary" href="#tac-pham">Xem tác phẩm →</a>
+            <a class="btn" href="#lien-he">Liên hệ đặt lịch</a>
+          </div>
+        </div>
+        <figure class="vf" style="margin:0">
+          <img src="img/avatar.jpg" alt="Chân dung Đỗ Quốc Thái Nguyên" width="480" height="480">
+          <figcaption class="vf-osd t"><span>● A001_C014</span><span>HCMC</span></figcaption>
+          <figcaption class="vf-osd"><span>SONY A7 V</span><span>ƒ1.8 · 1/100</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Phóng sự cưới</span><i>●</i><span>Film cưới</span><i>●</i><span>Ảnh quảng cáo F&amp;B</span><i>●</i><span>Concept mỹ phẩm</span><i>●</i><span>Ảnh sản phẩm</span><i>●</i><span>Hậu kỳ &amp; dựng phim</span><i>●</i>
+      <span>Phóng sự cưới</span><i>●</i><span>Film cưới</span><i>●</i><span>Ảnh quảng cáo F&amp;B</span><i>●</i><span>Concept mỹ phẩm</span><i>●</i><span>Ảnh sản phẩm</span><i>●</i><span>Hậu kỳ &amp; dựng phim</span><i>●</i>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><strong>5,7K<em>+</em></strong><span>người theo dõi trên Facebook</span></div>
+      <div class="stat"><strong>2013</strong><span>năm bắt đầu cầm máy</span></div>
+      <div class="stat"><strong>35K</strong><span>lượt xem reel cao nhất</span></div>
+      <div class="stat"><strong>6</strong><span>mảng dịch vụ trọn gói</span></div>
+    </div>
+  </div>
+
+  <figure class="band" style="margin:0">
+    <img src="img/cover.jpg" alt="Những người giữ lại khoảnh khắc" width="1800" height="750" loading="lazy">
+    <figcaption class="vf-osd t"><span>● REC</span><span>SCENE 01 · TAKE 03</span></figcaption>
+    <figcaption class="vf-osd"><span>Những người giữ lại khoảnh khắc</span><span>2.35 : 1</span></figcaption>
+  </figure>
+
+  <section class="film" id="phim-cuoi">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="display">Phim cưới</h2>
+        <p>Mỗi phim là 60 giây trích từ phóng sự cưới trọn ngày. Chọn một đám cưới bên dưới để xem, nhớ bật tiếng.</p>
+      </div>
+      <div class="player">
+        <video id="ps-video" controls playsinline preload="none"></video>
+      </div>
+      <div class="film-meta"><span class="mono" id="ps-meta">● Phóng sự cưới · Sony A7 V</span><p id="ps-desc"></p></div>
+      <div class="playlist" id="ps-list" role="list"></div>
+    </div>
+  </section>
+
+  <section id="dich-vu">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 class="display">Dịch vụ</h2>
+        <p>Nhận trọn gói từ lên ý tưởng, dựng bối cảnh, set ánh sáng, chụp, quay đến chỉnh màu và dựng phim hoàn chỉnh.</p>
+      </div>
+      <div class="svc-list">
+        <div class="svc rv"><span class="mono">Wedding</span><h3>Phóng sự &amp; film cưới</h3><p>Quay handheld Sony A7 V, ống 35mm T1.05. Phóng sự ngắn theo mood, film dài đúng trình tự buổi lễ.</p><div class="thumb"><img src="img/ps-poster.jpg" alt="" loading="lazy"></div></div>
+        <div class="svc rv"><span class="mono">F&amp;B</span><h3>Ảnh quảng cáo món ăn</h3><p>Bánh mì, pizza, đồ uống: dựng set, ánh sáng làm nổi chất liệu và độ tươi của món.</p><div class="thumb"><img src="img/fnb-4.jpg" alt="" loading="lazy"></div></div>
+        <div class="svc rv"><span class="mono">Beauty</span><h3>Concept mỹ phẩm</h3><p>Set dựng thiên nhiên: rêu, hoa dại, đá. Kể câu chuyện thành phần của sản phẩm.</p><div class="thumb"><img src="img/my-pham-2.jpg" alt="" loading="lazy"></div></div>
+        <div class="svc rv"><span class="mono">Tech</span><h3>Sản phẩm công nghệ</h3><p>Nền tối, ánh sáng viền, bóng đổ có kiểm soát cho tai nghe, thiết bị điện tử.</p><div class="thumb"><img src="img/cong-nghe-4.jpg" alt="" loading="lazy"></div></div>
+        <div class="svc rv"><span class="mono">E-commerce</span><h3>Sản phẩm nền trắng</h3><p>Nội thất, gia dụng: ánh sáng đều, đúng màu, sẵn sàng cho sàn thương mại điện tử.</p><div class="thumb"><img src="img/trang-2.jpg" alt="" loading="lazy"></div></div>
+        <div class="svc rv"><span class="mono">Post</span><h3>Hậu kỳ &amp; dựng phim</h3><p>Chỉnh màu và dựng phim trên DaVinci Resolve, chỉnh ảnh trên Capture One, Photoshop.</p><div class="thumb"><img src="img/bts-3.jpg" alt="" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tac-pham" style="padding-top:24px">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 class="display">Tác phẩm</h2>
+        <p>Dự án chọn lọc. Bấm vào ảnh để xem lớn, dùng phím ← → để chuyển ảnh.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Lọc dự án">
+        <button type="button" id="f-all" data-f="all" aria-pressed="true">Tất cả</button>
+        <button type="button" id="f-wedding" data-f="wedding" aria-pressed="false">Cưới</button>
+        <button type="button" id="f-event" data-f="event" aria-pressed="false">Sự kiện</button>
+        <button type="button" id="f-artist" data-f="artist" aria-pressed="false">Nghệ sĩ</button>
+        <button type="button" id="f-portrait" data-f="portrait" aria-pressed="false">Chân dung</button>
+        <button type="button" id="f-fnb" data-f="fnb" aria-pressed="false">F&amp;B</button>
+        <button type="button" id="f-beauty" data-f="beauty" aria-pressed="false">Mỹ phẩm</button>
+        <button type="button" id="f-product" data-f="product" aria-pressed="false">Sản phẩm</button>
+      </div>
+
+      <article class="project" data-cat="wedding">
+        <div class="p-head rv"><div><span class="mono">Phóng sự cưới · Ảnh</span><h3>Ngày vui, kể bằng ảnh</h3><p>Lễ vu quy, ăn hỏi và lễ cưới nhà thờ: nụ cười, ánh mắt, cái nắm tay. Ghi lại cảm xúc thật, ánh sáng tự nhiên.</p></div></div>
+        <div class="shots">
+          <button class="shot c3 pt rv" data-src="img/nhu-thao-0.jpg"><img src="img/nhu-thao-0.jpg" alt="Cô dâu tinh nghịch bên cổng hoa" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/loi-di-1.jpg"><img src="img/loi-di-1.jpg" alt="Cô dâu chú rể nắm tay đi giữa lối đi nhà thờ" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/cuoi-a-1.jpg"><img src="img/cuoi-a-1.jpg" alt="Cô dâu áo dài trắng bên bàn tiệc" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/loi-di-2.jpg"><img src="img/loi-di-2.jpg" alt="Cô dâu chú rể bước giữa lễ đường" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/nhu-thao-94.jpg"><img src="img/nhu-thao-94.jpg" alt="Cô dâu áo dài đỏ cười rạng rỡ" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/nhu-thao-48.jpg"><img src="img/nhu-thao-48.jpg" alt="Cô dâu giữa rèm cửa" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/ngoc-giau-31.jpg"><img src="img/ngoc-giau-31.jpg" alt="Cô dâu trên cầu thang hoa" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/loi-di-4.jpg"><img src="img/loi-di-4.jpg" alt="Cô dâu chú rể nhìn nhau cười" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/cuoi-a-2.jpg"><img src="img/cuoi-a-2.jpg" alt="Cô dâu tựa cằm mỉm cười" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/nha-tho-31.jpg"><img src="img/nha-tho-31.jpg" alt="Cô dâu chú rể tựa nhau, đen trắng" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/loi-di-3.jpg"><img src="img/loi-di-3.jpg" alt="Toàn cảnh lối đi nhà thờ với cô dâu chú rể" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/cuoi-a-4.jpg"><img src="img/cuoi-a-4.jpg" alt="Cô dâu bước ra từ rèm" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="project" data-cat="portrait">
+        <div class="p-head rv"><div><span class="mono">Chân dung xuân · Áo dài, áo yếm</span><h3>Sắc xuân</h3><p>Áo dài trắng với giỏ quà Tết, áo yếm đỏ bên lò gạch Lò Lu trong nắng chiều.</p></div></div>
+        <div class="shots">
+          <button class="shot c3 pt rv" data-src="img/xuan-a-1.jpg"><img src="img/xuan-a-1.jpg" alt="Áo dài trắng cầm quạt" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/xuan-a-2.jpg"><img src="img/xuan-a-2.jpg" alt="Áo dài trắng giữa vườn" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/xuan-a-3.jpg"><img src="img/xuan-a-3.jpg" alt="Áo dài trắng với giỏ quà Tết" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/xuan-a-4.jpg"><img src="img/xuan-a-4.jpg" alt="Chân dung nam áo dài trắng" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/xuan-b-1.jpg"><img src="img/xuan-b-1.jpg" alt="Áo yếm đỏ trong nắng chiều" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/xuan-b-2.jpg"><img src="img/xuan-b-2.jpg" alt="Áo yếm đỏ bên lò gạch" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/xuan-b-3.jpg"><img src="img/xuan-b-3.jpg" alt="Áo yếm đỏ, chân dung cận" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/xuan-b-4.jpg"><img src="img/xuan-b-4.jpg" alt="Áo yếm đỏ ngược sáng" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="project" data-cat="event">
+        <div class="p-head rv"><div><span class="mono">Sự kiện · Khoảnh khắc &amp; không gian</span><h3>Sheraton &amp; Amanotes</h3><p>Sự kiện Sheraton 11/2025: những tràng cười, cái vỗ tay, trò chơi trên sân khấu. Kèm không gian văn phòng Amanotes, đúng màu thương hiệu.</p></div></div>
+        <div class="shots">
+          <button class="shot c4 ls rv" data-src="img/sheraton-79.jpg"><img src="img/sheraton-79.jpg" alt="Khách mời cười vui tại sự kiện" loading="lazy"></button>
+          <button class="shot c4 ls rv" data-src="img/sheraton-87.jpg"><img src="img/sheraton-87.jpg" alt="Khách mời vỗ tay" loading="lazy"></button>
+          <button class="shot c4 ls rv" data-src="img/sheraton-88.jpg"><img src="img/sheraton-88.jpg" alt="Khách mời trò chuyện bên bàn tiệc" loading="lazy"></button>
+          <button class="shot c4 ls rv" data-src="img/sheraton-64.jpg"><img src="img/sheraton-64.jpg" alt="Khách mời giao lưu" loading="lazy"></button>
+          <button class="shot c4 ls rv" data-src="img/sheraton-100.jpg"><img src="img/sheraton-100.jpg" alt="Trò chơi nhảy trên sân khấu" loading="lazy"></button>
+          <button class="shot c4 ls rv" data-src="img/event-b-3.jpg"><img src="img/event-b-3.jpg" alt="Quầy bar Chivas" loading="lazy"></button>
+          <button class="shot c4 ls rv" data-src="img/event-a-1.jpg"><img src="img/event-a-1.jpg" alt="Không gian văn phòng Amanotes" loading="lazy"></button>
+          <button class="shot c4 ls rv" data-src="img/event-a-3.jpg"><img src="img/event-a-3.jpg" alt="Phòng họp màu sắc Amanotes" loading="lazy"></button>
+          <button class="shot c4 ls rv" data-src="img/event-a-2.jpg"><img src="img/event-a-2.jpg" alt="Sảnh chung Amanotes" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="project" data-cat="artist">
+        <div class="p-head rv"><div><span class="mono">Nghệ sĩ · Chân dung</span><h3>Ca sĩ Hồng Ngọc</h3><p>Bộ chân dung đầm đen: ánh sáng mềm, đá xám, cầu thang gỗ đỏ. Sang trọng mà vẫn rất đời.</p></div></div>
+        <div class="shots">
+          <button class="shot c3 pt rv" data-src="img/hn-1.jpg"><img src="img/hn-1.jpg" alt="Ca sĩ Hồng Ngọc cận mặt, vòng ngọc trai" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/hn-2.jpg"><img src="img/hn-2.jpg" alt="Ca sĩ Hồng Ngọc cười, nền trắng" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/hn-3.jpg"><img src="img/hn-3.jpg" alt="Ca sĩ Hồng Ngọc bên cầu thang đá" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/hn-4.jpg"><img src="img/hn-4.jpg" alt="Ca sĩ Hồng Ngọc trên sofa xám" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="project" data-cat="artist">
+        <div class="p-head rv"><div><span class="mono">Nghệ sĩ · Hậu trường quảng cáo</span><h3>Diễn viên Ninh Dương Lan Ngọc</h3><p>Ảnh hậu trường buổi quay quảng cáo: tươi, sáng, đúng tinh thần thương hiệu.</p></div></div>
+        <div class="shots">
+          <button class="shot c3 pt rv" data-src="img/lan-ngoc-1.jpg"><img src="img/lan-ngoc-1.jpg" alt="Ninh Dương Lan Ngọc với bó hoa" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/lan-ngoc-2.jpg"><img src="img/lan-ngoc-2.jpg" alt="Ninh Dương Lan Ngọc trên sofa vàng" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/lan-ngoc-3.jpg"><img src="img/lan-ngoc-3.jpg" alt="Ninh Dương Lan Ngọc nền xanh" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/lan-ngoc-4.jpg"><img src="img/lan-ngoc-4.jpg" alt="Ninh Dương Lan Ngọc cầm điện thoại" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="project" data-cat="portrait">
+        <div class="p-head rv"><div><span class="mono">Chân dung nghệ thuật</span><h3>Ánh sáng và dáng người</h3><p>Chân dung dàn dựng trong nhà: đầm đen, cầu thang đá, phòng gương. Mỗi khung là một sắc thái.</p></div></div>
+        <div class="shots">
+          <button class="shot c3 pt rv" data-src="img/chan-dung-1.jpg"><img src="img/chan-dung-1.jpg" alt="Chân dung áo sơ mi trắng" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/chan-dung-5.jpg"><img src="img/chan-dung-5.jpg" alt="Chân dung trong phòng gương" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/chan-dung-6.jpg"><img src="img/chan-dung-6.jpg" alt="Chân dung lưng trần" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/chan-dung-7.jpg"><img src="img/chan-dung-7.jpg" alt="Chân dung ánh sáng tối" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/chan-dung-8.jpg"><img src="img/chan-dung-8.jpg" alt="Chân dung trong căn hộ" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/chan-dung-10.jpg"><img src="img/chan-dung-10.jpg" alt="Chân dung bên cầu thang đá" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/chan-dung-11.jpg"><img src="img/chan-dung-11.jpg" alt="Chân dung váy lấp lánh" loading="lazy"></button>
+          <button class="shot c3 pt rv" data-src="img/chan-dung-12.jpg"><img src="img/chan-dung-12.jpg" alt="Chân dung trên sofa xám" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="project" data-cat="fnb">
+        <div class="p-head rv"><div><span class="mono">Quảng cáo F&amp;B · Bánh Mì Lão Phố, Hum's Pizza</span><h3>Vị ngon trong khung hình</h3><p>Món ăn dựng trên bàn gỗ, khăn hoa, ánh sáng ấm như nắng chiều.</p></div><a href="https://www.behance.net/gallery/243632981/NHIP-NH-QUNG-CAO-F-B" target="_blank" rel="noopener">Xem trên Behance ↗</a></div>
+        <div class="shots">
+          <button class="shot c7 sq tall rv" data-src="img/fnb-1.jpg" style="aspect-ratio:auto"><img src="img/fnb-1.jpg" alt="Bánh mì và trà sữa trên khăn hoa" loading="lazy"></button>
+          <button class="shot c5 ls rv" data-src="img/fnb-4.jpg"><img src="img/fnb-4.jpg" alt="Pizza Hum's" loading="lazy"></button>
+          <button class="shot c5 ls rv" data-src="img/fnb-5.jpg"><img src="img/fnb-5.jpg" alt="Pizza cắt miếng" loading="lazy"></button>
+          <button class="shot c6 ls rv" data-src="img/fnb-2.jpg"><img src="img/fnb-2.jpg" alt="Bàn tiệc bánh mì" loading="lazy"></button>
+          <button class="shot c6 ls rv" data-src="img/fnb-3.jpg"><img src="img/fnb-3.jpg" alt="Bánh mì trên thớt gỗ" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="project" data-cat="beauty">
+        <div class="p-head rv"><div><span class="mono">Concept mỹ phẩm thiên nhiên</span><h3>Khu vườn trong chai</h3><p>Chai sữa rửa mặt giữa thảm rêu, hoa dại và đá. Tông xanh rừng, ánh sáng xuyên lá.</p></div><a href="https://www.behance.net/gallery/243632421/NH-CONCEPT-M-PHM-THIEN-NHIEN" target="_blank" rel="noopener">Xem trên Behance ↗</a></div>
+        <div class="shots">
+          <button class="shot c4 po rv" data-src="img/my-pham-1.jpg"><img src="img/my-pham-1.jpg" alt="Sản phẩm giữa hoa và cỏ" loading="lazy"></button>
+          <button class="shot c4 po rv" data-src="img/my-pham-2.jpg"><img src="img/my-pham-2.jpg" alt="Chai sữa rửa mặt trên đá" loading="lazy"></button>
+          <button class="shot c4 po rv" data-src="img/my-pham-5.jpg"><img src="img/my-pham-5.jpg" alt="Sản phẩm trên nền vàng với hoa cúc" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="project" data-cat="product">
+        <div class="p-head rv"><div><span class="mono">Sản phẩm công nghệ</span><h3>Âm thanh lơ lửng</h3><p>Ánh sáng viền làm rõ chất liệu da và kim loại, tai nghe như trôi trong bóng tối.</p></div><a href="https://www.behance.net/gallery/243632119/PRODUCT-PHOTOS-OF-TECHNOLOGY-ITEMS-BACKGROUND" target="_blank" rel="noopener">Xem trên Behance ↗</a></div>
+        <div class="shots">
+          <button class="shot c6 sq rv" data-src="img/cong-nghe-4.jpg"><img src="img/cong-nghe-4.jpg" alt="Tai nghe vàng đồng" loading="lazy"></button>
+          <button class="shot c6 sq rv" data-src="img/cong-nghe-1.jpg"><img src="img/cong-nghe-1.jpg" alt="Bộ sưu tập tai nghe" loading="lazy"></button>
+          <button class="shot c6 sq rv" data-src="img/cong-nghe-2.jpg"><img src="img/cong-nghe-2.jpg" alt="Tai nghe bạc trên bục trắng" loading="lazy"></button>
+          <button class="shot c6 sq rv" data-src="img/cong-nghe-3.jpg"><img src="img/cong-nghe-3.jpg" alt="Tai nghe kem trên bục trắng" loading="lazy"></button>
+        </div>
+      </article>
+
+      <article class="project" data-cat="product">
+        <div class="p-head rv"><div><span class="mono">Sản phẩm nền trắng</span><h3>Nội thất tinh gọn</h3><p>Ghế, bàn trang điểm, đôn gỗ: ánh sáng đều, giữ đúng màu gỗ và vải cho trang bán hàng.</p></div><a href="https://www.behance.net/gallery/243632323/PRODUCT-PHOTOGRAPHY-ON-A-WHITE-BACKGROUND" target="_blank" rel="noopener">Xem trên Behance ↗</a></div>
+        <div class="shots">
+          <button class="shot c3 sq rv" data-src="img/trang-2.jpg"><img src="img/trang-2.jpg" alt="Bàn trang điểm gỗ sáng" loading="lazy"></button>
+          <button class="shot c3 sq rv" data-src="img/trang-3.jpg"><img src="img/trang-3.jpg" alt="Bàn trang điểm gỗ đen" loading="lazy"></button>
+          <button class="shot c3 sq rv" data-src="img/trang-1.jpg"><img src="img/trang-1.jpg" alt="Ghế bar bọc nệm" loading="lazy"></button>
+          <button class="shot c3 sq rv" data-src="img/trang-4.jpg"><img src="img/trang-4.jpg" alt="Đôn gỗ chân trắng" loading="lazy"></button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="hau-truong" style="padding-bottom:40px">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 class="display">Hậu trường</h2>
+        <p>Một ngày trên set: dựng đèn, máy quay, ekip và khách hàng cùng làm từ BTS đến ảnh hoàn thiện. Kéo ngang để xem.</p>
+      </div>
+    </div>
+    <div class="strip" tabindex="0" aria-label="Dải ảnh hậu trường, kéo ngang để xem">
+      <div class="strip-in shots" style="display:flex">
+        <button class="shot" data-src="img/bts-1.jpg"><span>KODAK 5219 · 01</span><img src="img/bts-1.jpg" alt="Ekip đang quay tại studio" loading="lazy"></button>
+        <button class="shot" data-src="img/bts-4.jpg"><span>KODAK 5219 · 02</span><img src="img/bts-4.jpg" alt="Quay đầu bếp làm bánh" loading="lazy"></button>
+        <button class="shot" data-src="img/bts-2.jpg"><span>KODAK 5219 · 03</span><img src="img/bts-2.jpg" alt="Set chụp trái cây bay" loading="lazy"></button>
+        <button class="shot" data-src="img/bts-3.jpg"><span>KODAK 5219 · 04</span><img src="img/bts-3.jpg" alt="Máy quay với màn hình monitor" loading="lazy"></button>
+        <button class="shot" data-src="img/bts-5.jpg"><span>KODAK 5219 · 05</span><img src="img/bts-5.jpg" alt="Dựng set chụp mỹ phẩm" loading="lazy"></button>
+        <button class="shot" data-src="img/bts-6.jpg"><span>KODAK 5219 · 06</span><img src="img/bts-6.jpg" alt="Xem lại ảnh trên máy quay" loading="lazy"></button>
+        <button class="shot" data-src="img/bts-7.jpg"><span>KODAK 5219 · 07</span><img src="img/bts-7.jpg" alt="Căn chỉnh sản phẩm dưới đèn" loading="lazy"></button>
+        <button class="shot" data-src="img/bts-8.jpg"><span>KODAK 5219 · 08</span><img src="img/bts-8.jpg" alt="Ekip chỉnh bố cục" loading="lazy"></button>
+        <button class="shot" data-src="img/bts-9.jpg"><span>KODAK 5219 · 09</span><img src="img/bts-9.jpg" alt="Duyệt ảnh trên laptop" loading="lazy"></button>
+        <button class="shot" data-src="img/bts-10.jpg"><span>KODAK 5219 · 10</span><img src="img/bts-10.jpg" alt="Hậu kỳ ảnh mỹ phẩm" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="thiet-bi" style="padding-top:56px">
+    <div class="wrap">
+      <div class="sec-head rv"><h2 class="display">Thiết bị</h2><p>Máy móc và phần mềm dùng hằng ngày, kèm vài công cụ tự viết để làm việc nhanh hơn.</p></div>
+      <div class="kit rv">
+        <div>
+          <h3>Ghi hình</h3>
+          <dl>
+            <dt>Máy chính</dt><dd>Sony A7 V</dd>
+            <dt>Ống kính</dt><dd>Sigma 24-70mm F2.8<br>Viltrox 16mm F1.8<br>35mm T1.05</dd>
+            <dt>Thu âm</dt><dd>Zoom recorder</dd>
+            <dt>Ánh sáng</dt><dd>Godox, softbox, đèn hắt</dd>
+          </dl>
+        </div>
+        <div>
+          <h3>Hậu kỳ</h3>
+          <dl>
+            <dt>Dựng phim</dt><dd>DaVinci Resolve Studio</dd>
+            <dt>Chỉnh ảnh</dt><dd>Capture One, Photoshop</dd>
+            <dt>Motion</dt><dd>After Effects</dd>
+            <dt>Tự phát triển</dt><dd>Download Driver AI, CardRevive</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="lien-he">
+    <div class="wrap">
+      <p class="mono" style="position:relative">Đặt lịch chụp · quay · dựng phim</p>
+      <h2 class="display">Giữ lại <span class="o">khoảnh khắc</span></h2>
+      <div class="c-grid">
+        <div class="c-item"><span class="mono">Điện thoại / Zalo</span><span class="val" id="phone">0397 908 014</span><button class="copy" type="button" id="copy-phone">Sao chép số</button></div>
+        <div class="c-item"><span class="mono">Facebook</span><a href="https://www.facebook.com/doquocthainguyen" target="_blank" rel="noopener">doquocthainguyen ↗</a></div>
+        <div class="c-item"><span class="mono">Instagram</span><a href="https://www.instagram.com/dqt.nguyen_156" target="_blank" rel="noopener">dqt.nguyen_156 ↗</a></div>
+        <div class="c-item"><span class="mono">Behance</span><a href="https://www.behance.net/doquocthaing" target="_blank" rel="noopener">doquocthaing ↗</a></div>
+      </div>
+      <footer class="mono"><span>© 2026 Đỗ Quốc Thái Nguyên · Mory's Media</span><span>TP. Hồ Chí Minh, Việt Nam</span></footer>
+    </div>
+  </section>
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Xem ảnh lớn">
+  <div class="lb-bar"><span id="lb-count">1 / 1</span><button type="button" id="lb-close">Đóng ✕</button></div>
+  <img id="lb-img" alt="">
+  <div class="lb-nav"><button type="button" id="lb-prev">← Trước</button><button type="button" id="lb-next">Sau →</button></div>
+</div>
+
+<script>
+(() => {
+
+  // DANH SÁCH PHIM CƯỚI — thêm video mới: thêm 1 dòng ở đầu danh sách (mới nhất lên đầu).
+  // file: tên tệp trong img/ (tạo bằng tools/cat_highlight.sh), ảnh bìa cùng tên .jpg
+  const VIDEOS = [
+    { file: 'ps-thanh-van', couple: 'Thanh Vân & Minh Đạt', date: '08.08.2026', note: 'Chú rể đón cô dâu, gia đình hai bên gặp nhau: những cái nắm tay đầu tiên của ngày cưới.' },
+    { file: 'ps-thuy-hien', couple: 'Thuý Hiền & Thanh Tuấn', date: '05.07.2026', note: 'Tiệc cưới náo nhiệt: nâng ly, linh vật nhảy múa, bạn bè reo hò.' },
+    { file: 'ps-thao-hieu', couple: 'Thảo Hiếu & Quốc Dũng', date: '12.07.2026', note: 'Từ lễ gia tiên, cô dâu bước vào lễ đường đến khoảnh khắc trao nhẫn.' },
+  ];
+  const vid = document.getElementById('ps-video'), list = document.getElementById('ps-list');
+  const pick = (i, play) => {
+    const v = VIDEOS[i];
+    vid.poster = `img/${v.file}.jpg`; vid.src = `img/${v.file}.mp4`;
+    document.getElementById('ps-meta').textContent = `● ${v.couple} · ${v.date} · Sony A7 V`;
+    document.getElementById('ps-desc').textContent = v.note;
+    list.querySelectorAll('.pl-item').forEach((b, k) => b.setAttribute('aria-current', String(k === i)));
+    if (play) vid.play().catch(() => {});
+  };
+  VIDEOS.forEach((v, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'pl-item'; b.setAttribute('role', 'listitem');
+    b.innerHTML = `<span class="pl-thumb"><img src="img/${v.file}.jpg" alt="" loading="lazy"><span class="pl-play">▶ 01:00</span></span><b></b><span class="mono"></span>`;
+    b.querySelector('b').textContent = v.couple; b.querySelector('span.mono').textContent = v.date;
+    b.addEventListener('click', () => { pick(i, true); vid.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+    list.appendChild(b);
+  });
+  pick(0, false);
+
+  // Timecode chạy như máy quay (25 hình/giây)
+  const tc = document.getElementById('tc'), t0 = performance.now();
+  const pad = n => String(n).padStart(2, '0');
+  const tick = () => {
+    const f = Math.floor((performance.now() - t0) / 40);
+    tc.textContent = `${pad(Math.floor(f / 90000) % 24)}:${pad(Math.floor(f / 1500) % 60)}:${pad(Math.floor(f / 25) % 60)}:${pad(f % 25)}`;
+    requestAnimationFrame(tick);
+  };
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(tick);
+
+  // Lọc dự án
+  const btns = document.querySelectorAll('.filters button');
+  btns.forEach(b => b.addEventListener('click', () => {
+    // Bấm mục nào thì cuộn tới mục đó (không ẩn mục khác)
+    btns.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    const target = b.dataset.f === 'all' ? document.getElementById('tac-pham') : document.querySelector(`.project[data-cat="${b.dataset.f}"]`);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+
+  // Xem ảnh lớn
+  const lb = document.getElementById('lb'), img = document.getElementById('lb-img'), cnt = document.getElementById('lb-count');
+  let list = [], i = 0, last = null;
+  const show = () => { const s = list[i]; img.src = s.dataset.src; img.alt = s.querySelector('img').alt; cnt.textContent = `${i + 1} / ${list.length}`; };
+  document.querySelectorAll('.shot').forEach(s => s.addEventListener('click', () => {
+    list = [...s.closest('.shots').querySelectorAll('.shot')]; i = list.indexOf(s); last = s;
+    show(); lb.hidden = false; document.getElementById('lb-close').focus();
+  }));
+  const close = () => { lb.hidden = true; img.removeAttribute('src'); last && last.focus(); };
+  const step = d => { i = (i + d + list.length) % list.length; show(); };
+  document.getElementById('lb-close').onclick = close;
+  document.getElementById('lb-prev').onclick = () => step(-1);
+  document.getElementById('lb-next').onclick = () => step(1);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', e => {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') close(); else if (e.key === 'ArrowLeft') step(-1); else if (e.key === 'ArrowRight') step(1);
+  });
+
+  // Sao chép số điện thoại
+  document.getElementById('copy-phone').addEventListener('click', async e => {
+    const b = e.currentTarget;
+    try { await navigator.clipboard.writeText('0397908014'); b.textContent = 'Đã sao chép'; }
+    catch { const r = document.createRange(); r.selectNodeContents(document.getElementById('phone')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Đã chọn số, nhấn ⌘C'; }
+    setTimeout(() => b.textContent = 'Sao chép số', 2000);
+  });
+})();
+</script>
+
+</body>
+</html>
