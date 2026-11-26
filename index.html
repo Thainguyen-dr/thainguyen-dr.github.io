@@ -573,13 +573,13 @@ footer{position:relative;margin-top:80px;padding-top:20px;border-top:1px solid v
     { file: 'ps-thuy-hien', couple: 'Thuý Hiền & Thanh Tuấn', date: '05.07.2026', note: 'Tiệc cưới náo nhiệt: nâng ly, linh vật nhảy múa, bạn bè reo hò.' },
     { file: 'ps-thao-hieu', couple: 'Thảo Hiếu & Quốc Dũng', date: '12.07.2026', note: 'Từ lễ gia tiên, cô dâu bước vào lễ đường đến khoảnh khắc trao nhẫn.' },
   ];
-  const vid = document.getElementById('ps-video'), list = document.getElementById('ps-list');
+  const vid = document.getElementById('ps-video'), plist = document.getElementById('ps-list');
   const pick = (i, play) => {
     const v = VIDEOS[i];
     vid.poster = `img/${v.file}.jpg`; vid.src = `img/${v.file}.mp4`;
     document.getElementById('ps-meta').textContent = `● ${v.couple} · ${v.date} · Sony A7 V`;
     document.getElementById('ps-desc').textContent = v.note;
-    list.querySelectorAll('.pl-item').forEach((b, k) => b.setAttribute('aria-current', String(k === i)));
+    plist.querySelectorAll('.pl-item').forEach((b, k) => b.setAttribute('aria-current', String(k === i)));
     if (play) vid.play().catch(() => {});
   };
   VIDEOS.forEach((v, i) => {
@@ -588,7 +588,7 @@ footer{position:relative;margin-top:80px;padding-top:20px;border-top:1px solid v
     b.innerHTML = `<span class="pl-thumb"><img src="img/${v.file}.jpg" alt="" loading="lazy"><span class="pl-play">▶ 01:00</span></span><b></b><span class="mono"></span>`;
     b.querySelector('b').textContent = v.couple; b.querySelector('span.mono').textContent = v.date;
     b.addEventListener('click', () => { pick(i, true); vid.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
-    list.appendChild(b);
+    plist.appendChild(b);
   });
   pick(0, false);
 
