@@ -273,7 +273,7 @@ footer{position:relative;margin-top:80px;padding-top:20px;border-top:1px solid v
   .filters::-webkit-scrollbar{display:none}
   .filters button{flex:none;padding:8px 14px;font-size:13px}
   /* Danh sách phim: vuốt ngang thay vì xếp dọc */
-  .playlist{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scrollbar-width:none;padding-bottom:4px}
+  .playlist{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(16px,env(safe-area-inset-left,0px));gap:12px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scrollbar-width:none;padding-bottom:4px}
   .playlist::-webkit-scrollbar{display:none}
   .pl-item{flex:none;width:62%;scroll-snap-align:start}
   .film-meta{flex-direction:column;gap:6px}
